@@ -4,7 +4,7 @@ $(function(){
   $.ajax({
     method:   'GET',
     dataType: 'json',
-    url:      'http://www.omdbapi.com/?' }).done(function(results) {
+    url:      'http://www.omdbapi.com/?t=chef' }).done(function(results) {
       console.log(results);
     });
 });
