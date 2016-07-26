@@ -13,11 +13,17 @@ $(function(){
         movieArray.push(results);
         var title = results.Title;
         var poster = results.Poster;
-        $('#resultDiv').append('<div class="col-md-4 text-center"id="' + title + '"><img src="' + poster + '"><h1>'+ title + '</h1></div>');
+
+        $('#resultDiv').append('<div class="col-md-4 text-center"><img src="' + poster + '"><h1>'+ title + '</h1></div>');
 
         // adds new genres to genreArray
         var newGenres = results.Genre.split(', ');
         genreArray = genreArray.concat(newGenres);
+
+        for (var i = 0; i < newGenres.length; i++) {
+          var genre = newGenres[i];
+          $('#resultDiv div:last-child:not(.noHide)').addClass(genre);
+        }
 
         // filters genreArray for duplicates
         genreArray = genreArray.filter(function(elem, pos) {
@@ -35,8 +41,8 @@ $(function(){
   });
 
   $('#select').change(function() {
-    var value = $(this).val();
-    $('#resultDiv').children().css('display', 'none');
-    //Cross-reference array of movie objects here.
+    var classToHide = "." + $(this).val();
+    $('.col-md-4').hide();
+    $(classToHide).toggle();
   })
 })
